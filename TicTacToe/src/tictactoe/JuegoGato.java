@@ -4,43 +4,69 @@
  * and open the template in the editor.
  */
 package tictactoe;
-import java.awt.event.*;
-
 /**
  *
  * @author Gabriel
  */
-public class JuegoGato extends javax.swing.JFrame implements ActionListener {
-    int contador;
-    int jugar;
-    private Matriz[][] gato;
+public class JuegoGato extends javax.swing.JFrame {
+    public boolean turno;
+    public String[][] gato;
     
     /**
      * Creates new form JuegoGato
      */
     public JuegoGato() {
         initComponents();
-        NuevoJuego();
+        turno = true;
+        gato = new String[3][3];
+        llenarMatriz();
     }
     
-    public void NuevoJuego() {
-        initComponents();
-
-        gato = new Matriz[3][3];
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
-
-                gato[i][j] = new Matriz();
-                gato[i][j].A.setBounds((i * 100) + 22, (j * 100) + 55, 100, 100);
-                gato[i][j].A.addActionListener(this);
-                this.add(gato[i][j].A);
+    public void llenarMatriz(){
+        
+        for(int i = 0; i < 3; i++)
+        {
+            for(int j = 0; j < 3; j++)
+            {
+                gato[i][j] = "i";
             }
-
         }
-
     }
-
-
+    
+    public void ingresaXoO(int i, int j, String m){
+        
+        gato[i][j] = m;
+    }
+    
+    public boolean jugador1(){
+        
+        if (((gato[0][0].equals("O")) && (gato[0][1].equals("O")) && (gato[0][2].equals("O")))
+                || ((gato[1][0].equals("O")) && (gato[1][1].equals("O")) && (gato[1][2].equals("O")))
+                || ((gato[2][0].equals("O")) && (gato[2][1].equals("O")) && (gato[2][2].equals("O")))
+                || ((gato[0][0].equals("O")) && (gato[1][0].equals("O")) && (gato[2][0].equals("O")))
+                || ((gato[0][1].equals("O")) && (gato[1][1].equals("O")) && (gato[2][1].equals("O")))
+                || ((gato[0][2].equals("O")) && (gato[1][2].equals("O")) && (gato[2][2].equals("O")))
+                || ((gato[0][0].equals("O")) && (gato[1][1].equals("O")) && (gato[2][2].equals("O")))
+                || ((gato[0][2].equals("O")) && (gato[1][1].equals("O")) && (gato[2][0].equals("O"))))
+            return true;
+        else
+            return false;                 
+    }
+    public boolean jugador2()
+    {
+        if( ((gato[0][0].equals("X")) && (gato[0][1].equals("X")) && (gato[0][2].equals("X")))
+                || ((gato[1][0].equals("X")) && (gato[1][1].equals("X")) && (gato[1][2].equals("X")))
+                || ((gato[2][0].equals("X")) && (gato[2][1].equals("X")) && (gato[2][2].equals("X")))
+                || ((gato[0][0].equals("X")) && (gato[1][0].equals("X")) && (gato[2][0].equals("X")))
+                || ((gato[0][1].equals("X")) && (gato[1][1].equals("X")) && (gato[2][1].equals("X")))
+                || ((gato[0][2].equals("X")) && (gato[1][2].equals("X")) && (gato[2][2].equals("X")))
+                || ((gato[0][0].equals("X")) && (gato[1][1].equals("X")) && (gato[2][2].equals("X")))
+                || ((gato[0][2].equals("X")) && (gato[1][1].equals("X")) && (gato[2][0].equals("X"))))
+            return true;
+        else
+            return false; 
+        
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -52,6 +78,17 @@ public class JuegoGato extends javax.swing.JFrame implements ActionListener {
 
         juegoNuevo = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        boton1 = new javax.swing.JButton();
+        boton3 = new javax.swing.JButton();
+        boton2 = new javax.swing.JButton();
+        boton6 = new javax.swing.JButton();
+        boton5 = new javax.swing.JButton();
+        boton4 = new javax.swing.JButton();
+        boton7 = new javax.swing.JButton();
+        boton8 = new javax.swing.JButton();
+        boton9 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -67,16 +104,107 @@ public class JuegoGato extends javax.swing.JFrame implements ActionListener {
         jLabel1.setFont(new java.awt.Font("Lucida Handwriting", 0, 11)); // NOI18N
         jLabel1.setText("GATO");
 
+        boton1.setPreferredSize(new java.awt.Dimension(100, 100));
+        boton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boton1ActionPerformed(evt);
+            }
+        });
+
+        boton3.setPreferredSize(new java.awt.Dimension(100, 100));
+        boton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boton3ActionPerformed(evt);
+            }
+        });
+
+        boton2.setPreferredSize(new java.awt.Dimension(100, 100));
+        boton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boton2ActionPerformed(evt);
+            }
+        });
+
+        boton6.setPreferredSize(new java.awt.Dimension(100, 100));
+        boton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boton6ActionPerformed(evt);
+            }
+        });
+
+        boton5.setPreferredSize(new java.awt.Dimension(100, 100));
+        boton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boton5ActionPerformed(evt);
+            }
+        });
+
+        boton4.setPreferredSize(new java.awt.Dimension(100, 100));
+        boton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boton4ActionPerformed(evt);
+            }
+        });
+
+        boton7.setPreferredSize(new java.awt.Dimension(100, 100));
+        boton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boton7ActionPerformed(evt);
+            }
+        });
+
+        boton8.setPreferredSize(new java.awt.Dimension(100, 100));
+        boton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boton8ActionPerformed(evt);
+            }
+        });
+
+        boton9.setPreferredSize(new java.awt.Dimension(100, 100));
+        boton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boton9ActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setText("Jugador 2 : X");
+
+        jLabel3.setText("Jugador 1 : O");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(37, 37, 37)
-                .addComponent(jLabel1)
-                .addGap(54, 54, 54)
-                .addComponent(juegoNuevo)
-                .addContainerGap(113, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(boton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(boton4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(boton7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addComponent(jLabel1)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(juegoNuevo)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(boton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(boton5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(boton8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(boton3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(boton6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(boton9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel2)
+                .addGap(24, 24, 24))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -85,7 +213,26 @@ public class JuegoGato extends javax.swing.JFrame implements ActionListener {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(juegoNuevo)
                     .addComponent(jLabel1))
-                .addContainerGap(341, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(boton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(boton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(boton3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(boton4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(boton5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(boton6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(boton7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(boton8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(boton9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel2))
+                .addGap(19, 19, 19))
         );
 
         pack();
@@ -93,18 +240,216 @@ public class JuegoGato extends javax.swing.JFrame implements ActionListener {
 
     private void juegoNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_juegoNuevoActionPerformed
         // TODO add your handling code here:
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
-                
-                this.remove(gato[i][j].A); 
-                               
-            }
-        }
-        jugar = 0;
-        contador = 0;
-        this.NuevoJuego();
-        jugar = 1;
+        boton1.setText("");
+        boton2.setText("");
+        boton3.setText("");
+        boton4.setText("");
+        boton5.setText("");
+        boton6.setText("");
+        boton7.setText("");
+        boton8.setText("");
+        boton9.setText("");
+        llenarMatriz();
+        turno = true;
+        
     }//GEN-LAST:event_juegoNuevoActionPerformed
+
+    private void boton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton2ActionPerformed
+        // TODO add your handling code here:
+        if(turno && gato[0][1].equals("i")){
+            
+            boton2.setText("O");
+            ingresaXoO(0,1,"O");
+            turno = false;
+            
+            if(jugador1())
+            javax.swing.JOptionPane.showMessageDialog(null, "Gano: Jugador 1");
+            
+        }else if(!turno && gato[0][1].equals("i")){
+            
+            boton2.setText("X");
+            ingresaXoO(0,1,"X");
+            turno = true;
+            
+            if(jugador2())
+            javax.swing.JOptionPane.showMessageDialog(null, "Gano: Jugador 2");
+        }
+    }//GEN-LAST:event_boton2ActionPerformed
+
+    private void boton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton3ActionPerformed
+        // TODO add your handling code here:
+        if(turno && gato[0][2].equals("i")){
+            
+            boton3.setText("O");
+            ingresaXoO(0,2,"O");
+            turno = false;
+            
+            if(jugador1())
+            javax.swing.JOptionPane.showMessageDialog(null, "Gano: Jugador 1");
+            
+        }else if(!turno && gato[0][2].equals("i")){
+            
+            boton3.setText("X");
+            ingresaXoO(0,2,"X");
+            turno = true;
+            
+            if(jugador2())
+            javax.swing.JOptionPane.showMessageDialog(null, "Gano: Jugador 2");
+        }
+    }//GEN-LAST:event_boton3ActionPerformed
+
+    private void boton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton9ActionPerformed
+        // TODO add your handling code here:
+        if(turno && gato[2][2].equals("i")){
+            
+            boton9.setText("O");
+            ingresaXoO(2,2,"O");
+            turno = false;
+            
+            if(jugador1())
+            javax.swing.JOptionPane.showMessageDialog(null, "Gano: Jugador 1");
+            
+        }else if(!turno && gato[2][2].equals("i")){
+            
+            boton9.setText("X");
+            ingresaXoO(2,2,"X");
+            turno = true;
+            
+            if(jugador2())
+            javax.swing.JOptionPane.showMessageDialog(null, "Gano: Jugador 2");
+        }
+    }//GEN-LAST:event_boton9ActionPerformed
+
+    private void boton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton1ActionPerformed
+        // TODO add your handling code here:
+        if(turno && gato[0][0].equals("i")){
+            
+            boton1.setText("O");
+            ingresaXoO(0,0,"O");
+            turno = false;
+            
+            if(jugador1())
+            javax.swing.JOptionPane.showMessageDialog(null, "Gano: Jugador 1");
+            
+        }else if(!turno && gato[0][0].equals("i")){
+            
+            boton1.setText("X");
+            ingresaXoO(0,0,"X");
+            turno = true;
+            
+            if(jugador2())
+            javax.swing.JOptionPane.showMessageDialog(null, "Gano: Jugador 2");
+        }
+    }//GEN-LAST:event_boton1ActionPerformed
+
+    private void boton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton4ActionPerformed
+        // TODO add your handling code here:
+        if(turno && gato[1][0].equals("i")){
+            
+            boton4.setText("O");
+            ingresaXoO(1,0,"O");
+            turno = false;
+            
+            if(jugador1())
+            javax.swing.JOptionPane.showMessageDialog(null, "Gano: Jugador 1");
+            
+        }else if(!turno && gato[1][0].equals("i")){
+            
+            boton4.setText("X");
+            ingresaXoO(1,0,"X");
+            turno = true;
+            
+            if(jugador2())
+            javax.swing.JOptionPane.showMessageDialog(null, "Gano: Jugador 2");
+        }
+    }//GEN-LAST:event_boton4ActionPerformed
+
+    private void boton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton5ActionPerformed
+        // TODO add your handling code here:
+        if(turno && gato[1][1].equals("i")){
+            
+            boton5.setText("O");
+            ingresaXoO(1,1,"O");
+            turno = false;
+            
+            if(jugador1())
+            javax.swing.JOptionPane.showMessageDialog(null, "Gano: Jugador 1");
+            
+        }else if(!turno && gato[1][1].equals("i")){
+            
+            boton5.setText("X");
+            ingresaXoO(1,1,"X");
+            turno = true;
+            
+            if(jugador2())
+            javax.swing.JOptionPane.showMessageDialog(null, "Gano: Jugador 2");
+        }
+    }//GEN-LAST:event_boton5ActionPerformed
+
+    private void boton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton6ActionPerformed
+        // TODO add your handling code here:
+        if(turno && gato[1][2].equals("i")){
+            
+            boton6.setText("O");
+            ingresaXoO(1,2,"O");
+            turno = false;
+            
+            if(jugador1())
+            javax.swing.JOptionPane.showMessageDialog(null, "Gano: Jugador 1");
+        }else if(!turno && gato[1][2].equals("i")){
+            
+            boton6.setText("X");
+            ingresaXoO(1,2,"X");
+            turno = true;
+            
+            if(jugador2())
+            javax.swing.JOptionPane.showMessageDialog(null, "Gano: Jugador 2");
+        }
+    }//GEN-LAST:event_boton6ActionPerformed
+
+    private void boton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton7ActionPerformed
+        // TODO add your handling code here:
+        if(turno && gato[2][0].equals("i")){
+            
+            boton7.setText("O");
+            ingresaXoO(2,0,"O");
+            turno = false;
+            
+            if(jugador1())
+            javax.swing.JOptionPane.showMessageDialog(null, "Gano: Jugador 1");
+            
+        }else if(!turno && gato[2][0].equals("i")){
+            
+            boton7.setText("X");
+            ingresaXoO(2,0,"X");
+            turno = true;
+            
+            if(jugador2())
+            javax.swing.JOptionPane.showMessageDialog(null, "Gano: Jugador 2");
+        }
+    }//GEN-LAST:event_boton7ActionPerformed
+
+    private void boton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton8ActionPerformed
+        // TODO add your handling code here:
+        if(turno && gato[2][1].equals("i")){
+            
+            boton8.setText("O");
+            ingresaXoO(2,1,"O");
+            turno = false;
+            
+            if(jugador1())
+            javax.swing.JOptionPane.showMessageDialog(null, "Gano: Jugador 1");
+            
+        }else if(!turno && gato[2][1].equals("i")){
+            
+            boton8.setText("X");
+            ingresaXoO(2,1,"X");
+            turno = true;
+            
+            if(jugador2())
+            javax.swing.JOptionPane.showMessageDialog(null, "Gano: Jugador 2");
+        }
+    }//GEN-LAST:event_boton8ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -140,40 +485,20 @@ public class JuegoGato extends javax.swing.JFrame implements ActionListener {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton boton1;
+    private javax.swing.JButton boton2;
+    private javax.swing.JButton boton3;
+    private javax.swing.JButton boton4;
+    private javax.swing.JButton boton5;
+    private javax.swing.JButton boton6;
+    private javax.swing.JButton boton7;
+    private javax.swing.JButton boton8;
+    private javax.swing.JButton boton9;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JButton juegoNuevo;
     // End of variables declaration//GEN-END:variables
 
-    void Turnos(Matriz M) {
-
-        if (contador % 2 == 0) {
-            
-            M.A.setText("O");
-            M.B = 1;
-        } else {
-            M.A.setText("X");
-            M.B = 2;
-            
-        }
-        M.A.removeActionListener(this);
-    }
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        
-        if(jugar == 1){
-            for (int i = 0; i < 3; i++) {
-                for (int j = 0; j < 3; j++) {
-                    
-                    if (e.getSource() == gato[i][j].A) {
-                        
-                        Turnos(gato[i][j]);
-                        contador++;
-                    }   
-                } 
-            }    
-        }        
-    }
     
-   
 }
